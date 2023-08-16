@@ -5,31 +5,22 @@
  */
 int main(void)
 {
-	int count = 0;
-	int first = 1, second = 2;
+	int i = 0;
+	unsigned long int a = 0, b = 1, next = 0;
 
-	while (count < 98)
+	while (i < 98)
 	{
-		if (count == 0)
-			printf("%d", first);
-		else if (count == 1)
-			printf(", %d", second);
-		else
+		next = a + b;
+		a = b;
+		b = next;
+		printf("%lu", next);
+
+		if (i < 97)
 		{
-			int next_term = first + second;
-			if (next_term < first)
-			{
-				printf("\nOverflow occurred at %d terms.\n", count + 1);
-				break;
-			}
-			printf(", %d", next_term);
-			first = second;
-			second = next_term;
+			printf(", ");
 		}
-
-		count++;
+		i++;
 	}
-
-	printf("\n");
+	putchar('\n');
 	return (0);
 }
