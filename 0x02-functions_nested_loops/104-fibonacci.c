@@ -5,22 +5,19 @@
  */
 int main(void)
 {
-	int i = 0;
-	unsigned long int a = 0, b = 1, next = 0;
+	int i;
+	unsigned long int a = 0, b = 1, next;
 
-	while (i < 98)
+	printf("%lu, %lu", a, b);
+
+	for (i = 2; i < 96; i++)
 	{
 		next = a + b;
 		a = b;
 		b = next;
-		printf("%lu", next);
 
-		if (i < 97)
-		{
-			printf(", ");
-		}
-		i++;
+		printf(", %lu", next);
 	}
-	putchar('\n');
+	printf("\n");
 	return (0);
 }
