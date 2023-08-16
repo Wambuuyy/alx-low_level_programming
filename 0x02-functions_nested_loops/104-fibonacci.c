@@ -6,13 +6,13 @@
 int main(void)
 {
 	int i;
-	unsigned long int a = 0, b = 1, next;
+	unsigned long int a = 1, b = 2, next;
 
 	printf("%lu, %lu", a, b);
 
-	for (i = 2; i < 96; i++)
+	for (i = 2; i < 98; i++)
 	{
-		next = a + b;
+		next =( a + b) % 10000000000000000UL;
 		a = b;
 		b = next;
 
