@@ -22,6 +22,6 @@ int main(void)
 	printf("%s", s1);
 	printf("%s", s2);
 
-	rintf("%s", ptr);
+	printf("%s", ptr);
 	return (0);
 }
