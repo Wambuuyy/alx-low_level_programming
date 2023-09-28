@@ -8,10 +8,10 @@
 int get_endianness(void)
 {
 	unsigned int value = 1;
-	char *byte_pointer = (char *)&value;
+	char *ptr = (char *)&value;
 
 	/* If the first byte is 1, it's little endian; otherwise, it's big endian. */
-	if (*byte_pointer == 1)
+	if (*ptr == 1)
 		return (1); /* Little endian */
 	else
 		return (0); /* Big endian */
