@@ -23,8 +23,10 @@ void print_elf_info(const Elf64_Ehdr *header)
 	{
 		printf("%02x%s", header->e_ident[i], (i == EI_NIDENT - 1) ? "\n" : " ");
 	}
-	printf(" Class: %s\n", header->e_ident[EI_CLASS] == ELFCLASS32 ? "ELF32" : "ELF64");
-	printf(" Data: %s\n", header->e_ident[EI_DATA] == ELFDATA2LSB ? "2's complement, little endian" : "2's complement, big endian");
+	printf(" Class: %s\n", header->e_ident[EI_CLASS] == ELFCLASS32
+			? "ELF32" : "ELF64");
+	printf(" Data: %s\n", header->e_ident[EI_DATA] == ELFDATA2LSB
+			? "2's complement, little endian" : "2's complement, big endian");
 	printf(" Version: %d (current)\n", header->e_ident[EI_VERSION]);
 	printf(" OS/ABI: ");
 	switch (header->e_ident[EI_OSABI])
@@ -93,6 +95,13 @@ void close_elf(int elf)
 		exit(98);
 	}
 }
+/**
+ * main - Entry point for the program
+ * @argc: The number of command-line arguments
+ * @argv: An array of pointers to the arguments
+ *
+ * Return: Always 0 (success)
+ */
 int main(int argc, char *argv[])
 {
 	int fd;
@@ -115,7 +124,8 @@ int main(int argc, char *argv[])
 		close_elf(fd);
 		return (98);
 	}
-	if (header.e_ident[EI_MAG0] != ELFMAG0 || header.e_ident[EI_MAG1] != ELFMAG1 ||
+	if (header.e_ident[EI_MAG0] != ELFMAG0
+			|| header.e_ident[EI_MAG1] != ELFMAG1 ||
 			header.e_ident[EI_MAG2] != ELFMAG2 || header.e_ident[EI_MAG3] != ELFMAG3)
 	{
 		fprintf(stderr, "Error: Not an ELF file\n");
