@@ -68,33 +68,44 @@ int main(int argc, char *argv[])
 
 	buf = create_buffer(argv[2]);
 	from = open(argv[1], O_RDONLY);
-	p = read(from, buffer, 1024);
 	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
+	if (from == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		free(buf);
+		exit(98);
+	}
+
+	if (to == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		free(buf);
+		exit(99);
+	}
+
 	do {
-		if (from == -1 || p == -1)
+		p = read(from, buf, 1024);
+
+		if (p == -1)
 		{
-			dprintf(STDERR_FILENO,
-			"Error: Can't read from file %s\n", argv[1]);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 			free(buf);
 			exit(98);
 		}
 
 		r = write(to, buf, p);
-		if (to == -1 || r == -1)
+
+		if (r == -1)
 		{
-			dprintf(STDERR_FILENO,
-			"Error: Can't write to %s\n", argv[2]);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			free(buf);
 			exit(99);
 		}
-
-		p = read(from, buf, 1024);
-		to = open(argv[2], O_WRONLY | O_APPEND);
 	} while (p > 0);
-	free(buf);
+
 	close_file(from);
 	close_file(to);
+	free(buf);
 	return (0);
 }
-
