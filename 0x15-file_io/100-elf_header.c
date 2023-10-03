@@ -30,14 +30,14 @@ void close_elf(int elf);
  */
 void check_elf(unsigned char *e_ident)
 {
-	int index;
+	int idx;
 
-	for (index = 0; index < 4; index++)
+	for (idx = 0; idx < 4; idx++)
 	{
-		if (e_ident[index] != 127 &&
-		    e_ident[index] != 'E' &&
-		    e_ident[index] != 'L' &&
-		    e_ident[index] != 'F')
+		if (e_ident[idx] != 127 &&
+		    e_ident[idx] != 'E' &&
+		    e_ident[idx] != 'L' &&
+		    e_ident[idx] != 'F')
 		{
 			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 			exit(98);
@@ -53,15 +53,15 @@ void check_elf(unsigned char *e_ident)
  */
 void print_magic(unsigned char *e_ident)
 {
-	int index;
+	int idx;
 
 	printf("  Magic:   ");
 
-	for (index = 0; index < EI_NIDENT; index++)
+	for (idx = 0; idx < EI_NIDENT; idx++)
 	{
-		printf("%02x", e_ident[index]);
+		printf("%02x", e_ident[idx]);
 
-		if (index == EI_NIDENT - 1)
+		if (idx == EI_NIDENT - 1)
 			printf("\n");
 		else
 			printf(" ");
@@ -74,7 +74,7 @@ void print_magic(unsigned char *e_ident)
  */
 void print_class(unsigned char *e_ident)
 {
-	printf("  Class:                             ");
+	printf("  Clase:                             ");
 
 	switch (e_ident[EI_CLASS])
 	{
@@ -98,7 +98,7 @@ void print_class(unsigned char *e_ident)
  */
 void print_data(unsigned char *e_ident)
 {
-	printf("  Data:                              ");
+	printf("  Dataa:                              ");
 
 	switch (e_ident[EI_DATA])
 	{
@@ -122,7 +122,7 @@ void print_data(unsigned char *e_ident)
  */
 void print_version(unsigned char *e_ident)
 {
-	printf("  Version:                           %d",
+	printf("  Versionn:                           %d",
 	       e_ident[EI_VERSION]);
 
 	switch (e_ident[EI_VERSION])
@@ -232,7 +232,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
  */
 void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 {
-	printf("  Entry point address:               ");
+	printf("  Entry paddress:               ");
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 	{
