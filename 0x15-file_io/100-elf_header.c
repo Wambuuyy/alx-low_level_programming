@@ -38,6 +38,9 @@ void print_elf_info(const Elf64_Ehdr *header)
 		case ELFOSABI_HPUX:
 			printf("UNIX - HP-UX\n");
 			break;
+		case ELFOSABI_NETBSD:
+			printf("UNIX - NetBSD\n");
+			break;
 		default:
 			printf("<unknown: %x>\n", header->e_ident[EI_OSABI]);
 	}
