@@ -107,7 +107,7 @@ void print_data(unsigned char *e_ident)
 		printf("2's complement, big endian\n");
 		break;
 	default:
-		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
+		printf("<unknown: %x>\n", e_ident[EI_DATA]);
 	}
 }
 
@@ -115,12 +115,11 @@ void print_data(unsigned char *e_ident)
  * print_version - Prints the version of an ELF header.
  * @e_ident: A pointer to an array containing the ELF version.
  */
-void print_version(unsigned char *e_ident)
+void print_version(Elf64_Ehdr *header)
 {
-	printf(" Version: %d",
-			e_ident[EI_VERSION]);
+	printf(" Version: %d", header->e_version);
 
-	switch (e_ident[EI_VERSION])
+	switch (header->e_version)
 	{
 	case EV_CURRENT:
 		printf(" (current)\n");
