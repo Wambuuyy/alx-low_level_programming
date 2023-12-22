@@ -34,7 +34,7 @@ typedef struct hash_table_s
 
 /**
  * struct shash_node_s - Node of a sorted hash table
- * 
+ *
  * @key: The key, string
  * The key is unique in the HashTable
  * @value: The value corresponding to a key
