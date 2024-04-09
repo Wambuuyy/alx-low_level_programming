@@ -3,7 +3,7 @@
 #include "search_algos.h"
 
 /**
- * jump_search - Searches for a value in a sorted array using Jump search algorithm
+ * jump_search - Searches for a value in a sorted array using Jump algorithm
  * @array: A pointer to the first element of the array to search
  * @size: The number of elements in the array
  * @value: The value to search for
@@ -18,7 +18,7 @@ int jump_search(int *array, size_t size, int value)
 		return (-1);
 
 	step = sqrt(size);
-	for (i = jump; jump <size && array[jump] < value;)
+	for (i = jump; jump < size && array[jump] < value;)
 	{
 		printf("Value checked array[%ld] = [%d]\n", jump, array[jump]);
 		i = jump;
